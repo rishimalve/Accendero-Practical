@@ -86,9 +86,10 @@ def calculateSentiment():
     sentiments = get_sentiments(message)
     return jsonify(sentiments[0]), 201
 
-# @app.rout('/api/history', methods=['GET'])
-# @cross_origin(supports_credentials=True)
-# def getHistory():
+@app.rout('/api/history', methods=['GET'])
+@cross_origin(supports_credentials=True)
+def getHistory():
+    return ""
     
 
 

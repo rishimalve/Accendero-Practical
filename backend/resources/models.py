@@ -3,7 +3,7 @@ from datetime import datetime
 from database import db
 from flask_bcrypt import generate_password_hash, check_password_hash
 
-
+#user table
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -16,6 +16,7 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+#messages table
 class Messages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)
