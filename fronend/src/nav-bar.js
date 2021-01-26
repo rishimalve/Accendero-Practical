@@ -5,12 +5,12 @@ import Nav from "react-bootstrap/Nav";
 
 const Nvgbar = () => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
       <Navbar.Brand href="#home">Mood2Day</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Check Your Mood!</Nav.Link>
+          <Nav.Link href="/moodCheck">Check Your Mood!</Nav.Link>
           <Nav.Link href="#pricing">History</Nav.Link>
         </Nav>
         <Nav>

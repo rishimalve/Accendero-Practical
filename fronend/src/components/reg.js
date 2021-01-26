@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "../primitive.css";
-import { navigate } from "@reach/router"
+import { Link, navigate } from "@reach/router"
 
 const Reg = props => {
 
@@ -25,20 +25,16 @@ const Reg = props => {
 
     axios.post("http://localhost:5000/api/register", user).then(res => {
       console.log(res);
-      if (res.status == 201) {
+      if (res.status === 201) {
         alert("Registration Successful, Please Login");
         navigate(`/login`);
       }
     });
   }
 
-  const resetForm = () => {
-    this.setState(this.initialState)
-  }
-
   return (
     <div className="medium-container">
-      <form onSubmit={submitForm} onReset={resetForm}>
+      <form onSubmit={submitForm}>
         <label>Username</label>
         <input type="text" name="username" id="uername" value={user.username} onChange={handleChange} required />
         <label>Email</label>
@@ -46,7 +42,9 @@ const Reg = props => {
         <label>Password</label>
         <input type="password" name="password" id="password" value={user.password} onChange={handleChange} required /><br />
         <button type="submit" className="button">Register</button>&nbsp;&nbsp;&nbsp;
-        <button type="reset" className="button muted-button">Cancel</button>
+        <Link to="/">
+          <button type="button" className="button muted-button">Cancel</button>
+        </Link>
       </form>
     </div>
   );
