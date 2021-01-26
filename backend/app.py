@@ -2,7 +2,7 @@ from resources import models
 from os import stat
 from flask_cors.decorator import cross_origin
 from config import Config
-from flask import Flask, jsonify, request, Response, session
+from flask import Flask, json, jsonify, request, Response, session
 from flask_session import Session
 from flask_bcrypt import Bcrypt, check_password_hash
 from flask_migrate import Migrate
@@ -28,7 +28,7 @@ with app.app_context():
 
 @app.route('/')
 def hello():
-    return "lol"
+    return ""
 
 
 def get_sentiments(text):
@@ -66,30 +66,43 @@ def login():
     if not user or not check_password_hash(user.password, password):
         return Response(status=401)
     session['id'] = user.id
-    print(session)
     return jsonify({"id": user.id}), 201
 
 
 @app.route('/api/calculateSentiment', methods=['POST'])
 @cross_origin(supports_credentials=True)
 def calculateSentiment():
-    print(session)
     if not request.json or not 'message' in request.json or request.json['message'] == "":
         return Response(status=400)
     message = request.get_json().get('message')
+    print(request.get_json().get('id'))
+    sentiments = get_sentiments(message)
+    if sentiments[0]['pos'] > sentiments[0]['neg']:
+        polarity = 'Positive'
+    else:
+        polarity = 'Negative'
     curr_message = models.Messages(
-        message=message, user_id=request.get_json().get('id'))
+        message=message, user_id=request.get_json().get('id'), polarity=polarity)
+    print(curr_message.polarity)
     db.session.add(curr_message)
     db.session.commit()
-    print(curr_message.message)
-    print(curr_message.user_id)
-    sentiments = get_sentiments(message)
     return jsonify(sentiments[0]), 201
 
-@app.rout('/api/history', methods=['GET'])
+
+def serialize_message(msg):
+    return {
+        "id": int(msg.id),
+        "user_id": int(msg.user_id),
+        "date": msg.time.strftime("%Y-%m-%d"),
+        "message": msg.message,
+        "polarity": msg.polarity
+    }
+
+@app.route('/api/history', methods=['GET'])
 @cross_origin(supports_credentials=True)
 def getHistory():
-    return ""
+    messages = [serialize_message(message) for message in models.Messages.query.filter_by(user_id=request.args.get('id'))]
+    return jsonify(messages), 201
     
 
 

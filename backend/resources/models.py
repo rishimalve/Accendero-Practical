@@ -22,3 +22,4 @@ class Messages(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     time = db.Column(db.DateTime, default=datetime.utcnow())
     message = db.Column(db.String(140))
+    polarity = db.Column(db.String)
