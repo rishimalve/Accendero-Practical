@@ -19,25 +19,18 @@ const MoodCheck = props => {
     }
 
     useEffect(() => {
-        const data = localStorage.getItem("current_message");
-        if (data) {
-            setMessage(JSON.parse(data));
+        setMessage({...message, id : props.userState['id']});
+        if(!props.userState['isLoggedIn']) {
+            navigate('/login');
         }
     }, []);
 
-    useEffect(() => {
-        localStorage.setItem("current_message", JSON.stringify(message));
-    });
-
     const submitForm = (event) => {
-        console.log(message);
         event.preventDefault();
-
-        setMessage({...message, id : props.userState['id']});
+        setMessage({id : props.userState['id']});
 
         axios.post("http://localhost:5000/api/calculateSentiment", message, {withCredentials : true}).then(res => {
             if (res.status === 201) {
-                console.log(res.data);
                 if (res.data['pos'] > res.data['neg']) {
                     setMessage({ ...message, polarity: 1 });
                     window.alert("You are thinking poitive!");

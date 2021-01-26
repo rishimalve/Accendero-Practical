@@ -3,11 +3,8 @@ import React, { useState, useEffect } from "react";
 import "../primitive.css";
 import { navigate } from "@reach/router"
 import { Link } from '@reach/router'
-// import AuthContext from './context';
 
 const Login = props => {
-
-  // const [authContext, setContext] = useContext(AuthContext);
 
   const initialState = {
     username: '',
@@ -25,7 +22,7 @@ const Login = props => {
   useEffect(() => {
     console.log(props.userState)
   },
-    [props.userState] //This is dependency and it will run only when data is changed
+    [props.userState]
   )
 
   const submitForm = (event) => {

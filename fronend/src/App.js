@@ -7,7 +7,7 @@ import Login from './components/login';
 import LandingPage from './components/landingPage';
 import MoodCheck from './components/moodCheck';
 import React, { useState } from "react";
-// import AuthContext from './components/context';
+import History from './components/history';
 
 function App() {
 
@@ -20,17 +20,16 @@ function App() {
 
   return (
     <div className="App">
-      {/* <AuthContext.Provider value={[state, setContext]}> */}
-      <Nvgbar />
+      <Nvgbar userState={userState}/>
       <div>
         <Router>
-          <Reg path="registration" userState={userState} />
           <Login path="login" setUserState={val => setUserState(val)} userState={userState} />
-          <LandingPage path="/" />
+          <Reg path="registration" userState={userState} />
+          <LandingPage path="/" setUserState={val => setUserState(val)} userState={userState}/>
           <MoodCheck path="/moodCheck" userState={userState} />
+          <History path="/history" userState={userState}></History>
         </Router>
       </div>
-      {/* </AuthContext.Provider> */}
     </div>
   );
 }

@@ -20,11 +20,9 @@ const Reg = props => {
   }
 
   const submitForm = (event) => {
-    console.log(user);
     event.preventDefault();
 
     axios.post("http://localhost:5000/api/register", user).then(res => {
-      console.log(res);
       if (res.status === 201) {
         alert("Registration Successful, Please Login");
         navigate(`/login`);

@@ -1,7 +1,15 @@
-import React from 'react'
-import { Link } from '@reach/router'
+import React, {useEffect} from 'react'
+import { Link, navigate } from '@reach/router'
 
-const LandingPage = () => {
+const LandingPage = props => {
+
+    useEffect(() => {
+        if(props.userState['isLoggedIn']) {
+            props.setUserState({ ...props.userState ,isLoggedIn: false, id: null });
+            navigate('/moodCheck');
+        }
+    }, []);
+
     return (
         <div className="medium-container">
             <div className="d-flex flex-column min-vh-100 justify-content-center">

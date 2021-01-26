@@ -2,20 +2,26 @@ import React from "react";
 import "./primitive.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { Link } from '@reach/router'
 
-const Nvgbar = () => {
+const Nvgbar = props => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
-      <Navbar.Brand href="#home">Mood2Day</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/moodCheck">Check Your Mood!</Nav.Link>
-          <Nav.Link href="#pricing">History</Nav.Link>
+          <Link to='/moodCheck' state={props.userState}>Check Your Mood!</Link>&nbsp;&nbsp;&nbsp;
+          <Link to='/history' state={props.userState}>Your History</Link>
         </Nav>
-        <Nav>
-          <Nav.Link href="#deets">Log Out</Nav.Link>
-        </Nav>
+        {
+          props.userState['isLoggedIn'] ?
+            <Nav>
+              <Link to='/' state={props.userState}>Log Out</Link>
+            </Nav> :
+            <Nav>
+              <Link to='/login' state={props.userState}>Login</Link>
+            </Nav>
+        }
       </Navbar.Collapse>
     </Navbar>
   );
