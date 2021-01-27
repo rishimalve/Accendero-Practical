@@ -42,14 +42,15 @@ def get_sentiments(text):
 @cross_origin()
 def register():
     body = request.get_json()
-    check_user = models.User.query.filter_by(username=body['username']).first()
+    if body:
+        check_user = models.User.query.filter_by(username=body['username']).first()
 
-    if not check_user:
-        user = models.User(username=body['username'], email=body['email'])
-        user.hash_password(body['password'])
-        db.session.add(user)
-        db.session.commit()
-        return Response(status=201)
+        if not check_user:
+            user = models.User(username=body['username'], email=body['email'])
+            user.hash_password(body['password'])
+            db.session.add(user)
+            db.session.commit()
+            return Response(status=201)
 
     return Response(status=409)
 
