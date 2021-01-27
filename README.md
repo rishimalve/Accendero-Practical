@@ -1,5 +1,9 @@
 # Accendero-Practical
 
+## Author
+
+- [Rishi Malve](https://www.linkedin.com/in/rishi-malve-28b568a4/)
+
 ## Mood2Day
 
 - This is a React + Flask full stack application with SQLAlchemy database. User input his or her thougth in the input box which is sent back to the python backend via REST API call. At the backend, a NLP model based on Spacy and Vader libarary calculates the polarity of the sentence and it is sent back to the frontend via REST api.
@@ -38,3 +42,10 @@ npm start
 ```
 
 6) Application will be hosted on <http://localhost/3000>
+
+## Materials used for help
+
+- [For Flask general setup](https://realpython.com/flask-by-example-part-1-project-setup/)
+- [SQLAlchemy Setup](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#a-minimal-application)
+- [REST APIs in React](https://www.digitalocean.com/community/tutorials/react-axios-react)
+- [React component testing](https://dev.to/richardigbiriki/testing-your-first-react-component-with-jest-and-enzyme-p38)
