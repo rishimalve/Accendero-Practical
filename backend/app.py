@@ -75,7 +75,7 @@ def calculateSentiment():
     if not request.json or not 'message' in request.json or request.json['message'] == "":
         return Response(status=400)
     message = request.get_json().get('message')
-    print(request.get_json().get('id'))
+
     sentiments = get_sentiments(message)
     if sentiments[0]['pos'] > sentiments[0]['neg']:
         polarity = 'Positive'
@@ -83,7 +83,7 @@ def calculateSentiment():
         polarity = 'Negative'
     curr_message = models.Messages(
         message=message, user_id=request.get_json().get('id'), polarity=polarity)
-    print(curr_message.polarity)
+
     db.session.add(curr_message)
     db.session.commit()
     return jsonify(sentiments[0]), 201
