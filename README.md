@@ -43,9 +43,26 @@ npm start
 
 6) Application will be hosted on <http://localhost/3000>
 
+## Testing the flask backend
+
+To test the flask backend run the following command in the backend folder
+
+```bash
+python3 -m unittest test_app.py
+```
+
+## Testing the react frontend
+
+To test the react frontend run the following command in the frontend folder
+
+```bash
+npm test
+```
+
 ## Materials used for help
 
 - [For Flask general setup](https://realpython.com/flask-by-example-part-1-project-setup/)
 - [SQLAlchemy Setup](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#a-minimal-application)
 - [REST APIs in React](https://www.digitalocean.com/community/tutorials/react-axios-react)
 - [React component testing](https://dev.to/richardigbiriki/testing-your-first-react-component-with-jest-and-enzyme-p38)
+- [Flask unit testing](https://www.patricksoftwareblog.com/unit-testing-a-flask-application/)
