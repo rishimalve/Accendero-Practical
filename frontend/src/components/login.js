@@ -26,18 +26,13 @@ const Login = props => {
   )
 
   const submitForm = (event) => {
-    console.log(user);
     event.preventDefault();
 
     axios.post("http://localhost:5000/api/login", user).then(res => {
       console.log(res);
       if (res.status === 201) {
-        props.setUserState({ ...props.userState ,isLoggedIn: true, id: res.data['id'] });
-        console.log(props.userState)
+        props.setUserState({ ...props.userState, isLoggedIn: true, id: res.data['id'] });
         navigate(`/moodCheck`);
-      }
-      else {
-        window.alert("invalid username or id \n or user does not exist");
       }
     });
   }
