@@ -36,6 +36,9 @@ const Login = props => {
         console.log(props.userState)
         navigate(`/moodCheck`);
       }
+      else {
+        window.alert("invalid username or id \n or user does not exist");
+      }
     });
   }
 
