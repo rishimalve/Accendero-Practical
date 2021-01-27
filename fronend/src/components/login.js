@@ -43,7 +43,7 @@ const Login = props => {
     <div className="small-container">
       <form onSubmit={submitForm}>
         <label>Username</label>
-        <input type="text" name="username" id="uername" value={user.username} onChange={handleChange} required />
+        <input type="text" name="username" id="username" value={user.username} onChange={handleChange} required />
         <label>Password</label>
         <input type="password" name="password" id="password" value={user.password} onChange={handleChange} required /><br />
         <button type="submit" className="button">Login</button>&nbsp;&nbsp;&nbsp;

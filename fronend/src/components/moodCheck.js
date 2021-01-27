@@ -33,7 +33,7 @@ const MoodCheck = props => {
             if (res.status === 201) {
                 if (res.data['pos'] > res.data['neg']) {
                     setMessage({ ...message, polarity: 1 });
-                    window.alert("You are thinking poitive!");
+                    window.alert("You are thinking positive!");
                 }
                 else {
                     setMessage({ ...message, polarity: 0 });
