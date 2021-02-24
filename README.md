@@ -1,10 +1,10 @@
-# Accendero-Practical
+# Mood2Day
 
 ## Author
 
 - [Rishi Malve](https://www.linkedin.com/in/rishi-malve-28b568a4/)
 
-## Mood2Day
+## Description
 
 - This is a React + Flask full stack application with SQLAlchemy database. User input his or her thougth in the input box which is sent back to the python backend via REST API call. At the backend, a NLP model based on Spacy and Vader libarary calculates the polarity of the sentence and it is sent back to the frontend via REST api.
 
